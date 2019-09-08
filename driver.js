@@ -1,9 +1,7 @@
-
-
 // driver
 let berlin52, max_iter, tabu_list_size, max_candidates, best;
  
-if (nil == $0) {
+if (true) {
   // problem configuration
   berlin52 = [
     [565, 575],
@@ -61,12 +59,14 @@ if (nil == $0) {
   ];
  
   // algorithm configuration
-  max_iter = 100;
-  tabu_list_size = 15;
+  maxIterations = 100;
+  tabuListSize = 15;
   max_candidates = 50;
  
   // execute the algorithm
-  best = search(berlin52, tabu_list_size, max_candidates, max_iter);
+  var Tabu =  require('./dist/index').default;
+  tabu = new Tabu(tabuListSize, maxIterations);
+  best = tabu.search(berlin52);
   console.log(`Done. Best Solution: c=${best["cost"]}, v=${best["vector"].inspect}`)
 }
 

@@ -1,11 +1,40 @@
 {
   "name": "tabu-search",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "An implementation of Tabu search using es6",
+  "main": "dist/index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "lint": "eslint src test",
+    "clean": "rimraf dist/",
+    "build": "rimraf dist/ && babel src/ --out-dir dist/",
+    "test": "./node_modules/.bin/jest",
+    "example": "node driver.js",
+    "prepare": "npm run clean && npm run lint && npm run test && npm run build",
+    "pub": "./node_modules/.bin/np || true"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "8.2.3",
+    "babel-jest": "22.4.3",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "1.6.1",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-import": "2.11.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "jest": "22.4.3",
+    "np": "2.20.1",
+    "npm-check": "5.7.0",
+    "rimraf": "2.6.2",
+    "run-sequence": "2.2.1"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
 }
