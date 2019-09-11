@@ -1,7 +1,16 @@
 // driver
-let berlin52, max_iter, tabu_list_size, max_candidates, best;
+let berlin52, best;
  
 if (true) {
+
+  berlin5 = [
+    [565, 575],
+    [25, 185],
+    [345, 750],
+    [945, 685],
+    [845, 655]
+  ];
+
   // problem configuration
   berlin52 = [
     [565, 575],
@@ -61,12 +70,25 @@ if (true) {
   // algorithm configuration
   maxIterations = 100;
   tabuListSize = 15;
-  max_candidates = 50;
  
   // execute the algorithm
   var Tabu =  require('./dist/index').default;
   tabu = new Tabu(tabuListSize, maxIterations);
   best = tabu.search(berlin52);
-  console.log(`Done. Best Solution: c=${best["cost"]}, v=${best["vector"].inspect}`)
+  console.log("Done. Best Solution: " + best)
+  console.log("Best Solution distance: " + findSolutionDistance(best))
 }
 
+function findSolutionDistance(solution) {
+  let solutionDistance = 0;
+  for(let i=0; i<solution.length-1; i++) {
+      solutionDistance = solutionDistance + distance(solution[i], solution[i+1]);
+  }
+
+  return solutionDistance;
+}
+
+function distance(firstPoint, secondPoint) {
+
+  return Math.sqrt(Math.pow(firstPoint[0] - secondPoint[0], 2) + Math.pow(firstPoint[1] - secondPoint[1], 2));
+}
